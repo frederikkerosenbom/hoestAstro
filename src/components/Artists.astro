@@ -1,6 +1,6 @@
 ---
 //@ts-nocheck
-import Layout from "../layouts/Layout.astro";
+// import Layout from "../layouts/Layout.astro";
 import Artist from "../components/Artist.astro";
 
 const url =`${import.meta.env.SUPABASE_URL}/rest/v1/artists2026?select=*`;
@@ -18,11 +18,14 @@ const data = await fetch(url, options)
 console.log(data);
 ---
 
-<Layout title="Kunstnere" >
+<!-- <Layout title="Kunstnere" >
   <h1>Artist</h1>
 
   {data.map((artist) => <Artist artist={artist} />)}
-</Layout>
+</Layout> -->
 
 
+<section>
 
+  {data.map((artist) => <Artist artist={artist} />)}
+</section>
