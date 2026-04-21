@@ -1,8 +1,7 @@
 ---
 //@ts-nocheck
 const {title} = Astro.props
-import Hero from "../components/Hero.astro";
-import Nav from "../components/Nav.astro";
+
 import Footer from "../components/Footer.astro";
 ---
 
@@ -15,10 +14,7 @@ import Footer from "../components/Footer.astro";
     <title>{title}</title>
 </head>
 <body>
-  <header>
- <Nav />
-  </header>
-    <Hero />
+ 
 
         <slot/>
  

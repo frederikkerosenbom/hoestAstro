@@ -7,11 +7,16 @@ import Volunteer from "../components/Volunteer.astro";
 import Contact from "../components/Contact.astro";
 import Archives from "../components/Archives.astro";
 import AboutUs from "../components/AboutUs.astro";
-
+import Hero from "../components/Hero.astro";
+import Nav from "../components/Nav.astro";
 ---
 <Layout title="Høst Festival">
-
+   <header>
+ <Nav />
+  </header>
+    
 <main>
+  <Hero />
 
   <section id="faq" class="section hidden">
     <FAQ />
