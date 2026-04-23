@@ -1,9 +1,140 @@
 ---
 //@ts-nocheck
-const { artist } = Astro.props;
+const { artist, index } = Astro.props;
+
+// Tjek om det er et lige (even) eller ulige nummer for at skifte layout retning
+const isEven = index % 2 === 0;
+const alignClass = isEven ? "align-left" : "align-right";
+
+// Fallback hvis artisten ikke har et billede i databasen endnu
+const imageUrl = artist.image_url || "https://via.placeholder.com/200x250";
 ---
 
-<article>
-  <h2>{artist.name}</h2>
-  <p>{artist.description}</p>
-</article>
+<details class={`artist-item ${alignClass}`}>
+  <summary>
+    <div class="title-row">
+      <h2>{artist.name}</h2>
+      <div class="icon-wrapper">
+        <span class="icon-plus">+</span>
+        <span class="icon-minus">-</span>
+      </div>
+    </div>
+  </summary>
+
+  <div class="expanded-content">
+    <div class="image-wrapper">
+      <img src={imageUrl} alt={`Billede af ${artist.name}`} />
+    </div>
+    <div class="description-wrapper">
+      <p>{artist.description}</p>
+    </div>
+  </div>
+</details>
+
+<style>
+ 
+  .artist-item {
+    position: relative;
+    width: 100%;
+    font-family: 'Solvent', cursive, sans-serif; 
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .title-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: #d7cde5; /* Lys lilla */
+    transition: color 0.2s ease;
+  }
+
+  .title-row h2 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .icon-wrapper {
+    font-size: clamp(2rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-minus {
+    display: none;
+  }
+
+  .align-left {
+    text-align: left;
+  }
+  
+  .align-right {
+    text-align: right;
+  }
+  
+  .align-right .title-row {
+    flex-direction: row-reverse;
+  }
+
+  /* --- NÅR DEN ER KLIKKET ÅBEN --- */
+  
+  details[open] .title-row {
+    color: #e3f656; 
+  }
+
+  details[open] .icon-plus { display: none; }
+  details[open] .icon-minus { display: inline; }
+
+
+  .expanded-content {
+    position: relative;
+    margin-top: 1rem;
+    min-height: 270px; 
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .image-wrapper {
+    position: absolute;
+    top: -60px; 
+    z-index: -1;
+  }
+
+  .image-wrapper img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border: 2px solid #e3f656;
+  }
+
+  .description-wrapper p {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 450px;
+  }
+
+ 
+  .align-left .image-wrapper {
+    left: -20px; 
+  }
+  .align-left .description-wrapper {
+    margin-left: 220px; 
+    padding-top: 1rem;
+  }
+
+
+  .align-right .image-wrapper {
+    right: -20px;
+  }
+  .align-right .description-wrapper {
+    margin-right: 220px;
+    padding-top: 1rem;
+  }
+</style>

@@ -12,12 +12,17 @@ const options = {
   },
 };
 
-const data = await fetch(url, options)
-  .then((res) => res.json());
-
-console.log(data);
+let data = [];
+try {
+  const response = await fetch(url, options);
+  data = await response.json();
+} catch (error) {
+  console.error("Fejl ved hentning af artister:", error);
+}
 ---
 
+<section class="artists-section">
+  <div class="bg-circle"></div>
 <!-- <Layout title="Kunstnere" >
   <h1>Artist</h1>
 
@@ -30,4 +35,39 @@ console.log(data);
 
 
 
+  <div class="artists-list">
+    {data.map((artist, index) => (
+      <Artist artist={artist} index={index} />
+    ))}
+  </div>
 </section>
+<style>
+  .artists-section {
+    background-color: #1a1e1d; 
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden; 
+  }
+
+  .bg-circle {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background-color: #a49ab3; 
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .artists-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1; 
+  }
+</style>
