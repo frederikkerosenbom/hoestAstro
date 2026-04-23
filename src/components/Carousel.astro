@@ -1,0 +1,65 @@
+---
+// src/components/Carousel.astro
+---
+
+<div class="marquee-container">
+  <div class="marquee-content">
+    
+    <div class="marquee-group">
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+    </div>
+
+    <div class="marquee-group" aria-hidden="true">
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+      <span>HØST 2026 // AUGUST 28-29 &nbsp;&bull;&nbsp; FESTIVAL &nbsp;&bull;&nbsp;</span>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    width: 100%;
+    overflow: hidden; /* Skjuler det tekst, der løber uden for skærmen */
+    background-color: #E2FF38; /* Den neongule/grønne farve fra dit billede */
+    padding: 10px 0; /* Juster højden på din header her */
+    position: relative;
+    z-index: 50; /* Sikrer at den ligger øverst */
+  }
+
+  .marquee-content {
+    display: flex;
+    width: max-content; /* Sørger for at containeren bliver lige så bred som teksten */
+    animation: scroll 20s linear infinite; /* Juster '20s' for at ændre farten */
+  }
+
+  .marquee-group {
+    display: flex;
+    gap: 0.5rem; /* Lille mellemrum mellem spans (udover det du laver med &bull;) */
+    white-space: nowrap;
+    font-family: sans-serif; /* Husk at sætte jeres egen festival-font ind her */
+    font-weight: 800; /* Gør teksten tyk og læselig */
+    font-size: 1.2rem;
+    color: #000000;
+  }
+
+  .marquee-group span {
+    padding-right: 0.5rem;
+  }
+
+  /* Keyframes der rykker containeren -50% (dvs. præcis bredden af Gruppe 1) */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+</style>

@@ -1,51 +1,50 @@
 ---
 //@ts-nocheck
 import Layout from "../layouts/Layout.astro";
+import Carousel from "../components/Carousel.astro";
 import FAQ from "../components/FAQ.astro";
 import Artists from "../components/Artists.astro";
 import Volunteer from "../components/Volunteer.astro";
 import Contact from "../components/Contact.astro";
 import Archives from "../components/Archives.astro";
 import AboutUs from "../components/AboutUs.astro";
-
+import Hero from "../components/Hero.astro";
+import Nav from "../components/Nav.astro";
 ---
+
 <Layout title="Høst Festival">
+   
+  <Carousel /> 
 
-<main>
+  <header>
+    <Nav />
+  </header>
+    
+  <main>
+    <Hero />
 
-  <section id="faq" class="section hidden">
-    <FAQ />
-  </section>
+    <section id="faq" class="section hidden">
+      <FAQ />
+    </section>
 
-  <section id="artists" class="section hidden">
-    <Artists />
-  </section>
+    <section id="artists" class="section hidden">
+      <Artists />
+    </section>
 
-  <section id="volunteer" class="section hidden">
-    <Volunteer />
-  </section>
+    <section id="volunteer" class="section hidden">
+      <Volunteer />
+    </section>
 
-   <section id="about" class="section hidden">
-    <AboutUs />
-  </section>
+    <section id="about" class="section hidden">
+      <AboutUs />
+    </section>
 
-     <section id="archives" class="section hidden">
-    <Archives />
-  </section>
+    <section id="archives" class="section hidden">
+      <Archives />
+    </section>
 
     <section id="contact" class="section hidden">
-    <Contact />
-  </section>
-</main>
+      <Contact />
+    </section>
+  </main>
 </Layout>
- 
-<style>
-  .hidden {
-    display: none;
-  }
-
-  .section {
-  transition: opacity 0.3s ease;
-}
-
-</style>
