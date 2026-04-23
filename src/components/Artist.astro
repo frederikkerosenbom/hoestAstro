@@ -2,12 +2,17 @@
 //@ts-nocheck
 const { artist, index } = Astro.props;
 
-// Tjek om det er et lige (even) eller ulige nummer for at skifte layout retning
+
 const isEven = index % 2 === 0;
 const alignClass = isEven ? "align-left" : "align-right";
 
-// Fallback hvis artisten ikke har et billede i databasen endnu
-const imageUrl = artist.image_url || "https://via.placeholder.com/200x250";
+
+const rawImage = artist.image || "";
+const imageUrl = rawImage
+  ? rawImage.startsWith("/")
+    ? rawImage
+    : `/${rawImage}`
+  : "https://via.placeholder.com/200x250";
 ---
 
 <details class={`artist-item ${alignClass}`}>
@@ -51,7 +56,7 @@ const imageUrl = artist.image_url || "https://via.placeholder.com/200x250";
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    color: #d7cde5; /* Lys lilla */
+    color: #EEE1FF; 
     transition: color 0.2s ease;
   }
 
@@ -87,7 +92,7 @@ const imageUrl = artist.image_url || "https://via.placeholder.com/200x250";
   /* --- NÅR DEN ER KLIKKET ÅBEN --- */
   
   details[open] .title-row {
-    color: #e3f656; 
+    color: #deff25; 
   }
 
   details[open] .icon-plus { display: none; }
@@ -110,7 +115,7 @@ const imageUrl = artist.image_url || "https://via.placeholder.com/200x250";
     width: 200px;
     height: 250px;
     object-fit: cover;
-    border: 2px solid #e3f656;
+    border: 2px solid #deff25;
   }
 
   .description-wrapper p {
