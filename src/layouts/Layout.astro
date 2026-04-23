@@ -1,31 +1,22 @@
 ---
 //@ts-nocheck
-const {title} = Astro.props
+const { title } = Astro.props;
 
 import Footer from "../components/Footer.astro";
 ---
 
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-</head>
-<body>
- 
-
-        <slot/>
- 
-    <footer>
-        <Footer />
-    </footer>
-</body>
-
+  </head>
+  <body>
+    <slot />
+    <Footer />
+  </body>
 </html>
 
 <style>
-
 </style>
-
