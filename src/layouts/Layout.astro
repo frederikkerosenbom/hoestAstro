@@ -3,7 +3,6 @@
 const {title} = Astro.props
 
 import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
 ---
 
 
@@ -16,18 +15,106 @@ import Hero from "../components/Hero.astro";
     <title>{title}</title>
 </head>
 <body>
-
-
-        <slot/>
+  <slot/>
  
-    <footer>
-        <Footer />
-    </footer>
+  <footer>
+    <Footer />
+  </footer>
 </body>
 
 </html>
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
 
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+  }
+
+  /* INDHOLDSSEKTIONER */
+  section {
+    min-height: 100vh;
+    padding: 100px 10%;
+    scroll-margin-top: 40px;
+    background: #111;
+    border-bottom: 1px solid #333;
+  }
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 700px;
+  }
+
+  .section.hidden {
+    display: none;
+  }
+
+  .section.visible {
+    display: block;
+  }
 </style>
+
+<script>
+  // Handle navigation clicks
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const href = link.getAttribute('href');
+      if (!href) return;
+      
+      const targetId = href.substring(1);
+      const clickedIcon = link.querySelector('.icon');
+      
+      // Check if this section is already open
+      if (clickedIcon && clickedIcon.textContent === '-') {
+        // Close the section
+        clickedIcon.textContent = '+';
+        
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.classList.add('hidden');
+          targetSection.classList.remove('visible');
+        }
+      } else {
+        // Open the section
+        // Update all menu icons back to +
+        document.querySelectorAll('nav a .icon').forEach(icon => {
+          icon.textContent = '+';
+        });
+        
+        // Set clicked link icon to -
+        if (clickedIcon) {
+          clickedIcon.textContent = '-';
+        }
+        
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.add('hidden');
+          section.classList.remove('visible');
+        });
+        
+        // Show target section
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.classList.remove('hidden');
+          targetSection.classList.add('visible');
+          
+          // Scroll to section smoothly
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>
 
