@@ -1,18 +1,49 @@
 ---
 //@ts-nocheck
 ---
+
 <nav>
   <ul>
-    <li onclick="showSection('faq')">FAQ</li>
-    <li onclick="showSection('artists')">Kunstnere</li>
-    <li onclick="showSection('volunteer')">Frivillig</li>
+    <li><a href="#faq" class="nav-link">FAQ <span class="icon">+</span></a></li>
+    <li><a href="#artists" class="nav-link">KUNSTNERE <span class="icon">+</span></a></li>
+    <li><a href="#volunteer" class="nav-link">FRIVILLIG <span class="icon">+</span></a></li>
+    <li><a href="#about" class="nav-link">OM OS <span class="icon">+</span></a></li>
+    <li><a href="#archives" class="nav-link">ARKIV <span class="icon">+</span></a></li>
+    <li><a href="#contact" class="nav-link">KONTAKT <span class="icon">+</span></a></li>
   </ul>
 </nav>
 
 <style>
+  /* MENU I VENSTRE MIDT */
+  nav {
+    position: fixed;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+
   nav ul {
-    display: flex;
-    gap: 20px;
-    cursor: pointer;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    margin: 14px 0;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #EEE1FF;
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #deff25;
   }
 </style>
